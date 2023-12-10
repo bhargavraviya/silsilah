@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.delete') }} : {{ $user->name }}</h3></div>
-    <div class="panel-body">
+<div class="card">
+    <div class="card-header"><h3 class="card-title">{{ __('user.delete') }} : {{ $user->name }}</h3></div>
+    <div class="card-body">
         <table class="table table-condensed">
             <tr><td>{{ __('user.name') }}</td><td>{{ $user->name }}</td></tr>
             <tr><td>{{ __('user.nickname') }}</td><td>{{ $user->nickname }}</td></tr>
@@ -27,7 +27,7 @@
                 'name' => 'replace_delete_button',
                 'class' => 'btn btn-danger',
             ]) }}
-            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-default pull-right']) }}
+            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-danger pull-right']) }}
             {{ Form::close() }}
         @else
             {!! FormField::delete(
@@ -36,7 +36,7 @@
                 ['class' => 'btn btn-danger'],
                 ['user_id' => $user->id]
             ) !!}
-            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-default']) }}
+            {{ link_to_route('users.edit', __('app.cancel'), [$user], ['class' => 'btn btn-danger']) }}
         @endif
     </div>
 </div>

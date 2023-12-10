@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -19,15 +20,14 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
         $user = auth()->user();
-
         $usersMariageList = [];
         foreach ($user->couples as $spouse) {
-            $usersMariageList[$spouse->pivot->id] = $user->name.' & '.$spouse->name;
+            $usersMariageList[$spouse->pivot->id] = $user->name . ' & ' . $spouse->name;
         }
 
         $malePersonList = User::where('gender_id', 1)->pluck('nickname', 'id');

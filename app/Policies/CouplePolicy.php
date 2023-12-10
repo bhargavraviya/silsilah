@@ -2,19 +2,27 @@
 
 namespace App\Policies;
 
-use App\User;
-use App\Couple;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use App\Models\User;
+use App\Models\Couple;
 
 class CouplePolicy
 {
     use HandlesAuthorization;
 
     /**
+     * Create a new policy instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
      * Determine whether the user can edit the couple.
      *
-     * @param  \App\User  $user
-     * @param  \App\Couple  $couple
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Couple  $couple
      * @return mixed
      */
     public function edit(User $user, Couple $couple)

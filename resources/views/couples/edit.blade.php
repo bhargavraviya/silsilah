@@ -9,10 +9,10 @@
 
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('couple.update') }}</h3></div>
+        <div class="card">
+            <div class="card-header"><h3 class="card-title">{{ trans('couple.update') }}</h3></div>
             {!! Form::model($couple, ['route' => ['couples.update', $couple], 'method' => 'patch']) !!}
-            <div class="panel-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         {!! FormField::text('marriage_date', ['label' => trans('couple.marriage_date')]) !!}
@@ -22,9 +22,9 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+            <div class="card-footer">
                 {!! Form::submit(trans('couple.update'), ['class' => 'btn btn-success']) !!}
-                {{ link_to_route('couples.show', trans('app.cancel'), [$couple], ['class' => 'btn btn-default']) }}
+                {{ link_to_route('couples.show', trans('app.cancel'), [$couple], ['class' => 'btn btn-danger']) }}
             </div>
             {!! Form::close() !!}
         </div>

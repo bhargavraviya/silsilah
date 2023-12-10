@@ -1,22 +1,24 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('name');
+            $table->string('email')->unique()->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable();
+            // 
             $table->string('nickname');
-            $table->string('name')->nullable();
             $table->boolean('gender_id')->unsigned();
             $table->uuid('father_id')->nullable();
             $table->uuid('mother_id')->nullable();
@@ -26,13 +28,11 @@ class CreateUsersTable extends Migration
             $table->unsignedTinyInteger('birth_order')->nullable();
             $table->date('dod')->nullable();
             $table->year('yod')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->string('password')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('phone')->nullable();
             $table->string('photo_path')->nullable();
-            $table->uuid('manager_id')->nullable();
+            $table->uuid('manager_id')->nullable();            
             $table->rememberToken();
             $table->timestamps();
         });
@@ -40,11 +40,9 @@ class CreateUsersTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }
-}
+};

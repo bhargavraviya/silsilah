@@ -1,6 +1,5 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.family') }}</h3></div>
-
+<div class="card">
+    <div class="card-header"><h3 class="card-title">{{ __('user.family') }}</h3></div>
     <table class="table">
         <tbody>
             <tr>
@@ -14,18 +13,18 @@
                             {{ Form::text('set_father', null, ['class' => 'form-control input-sm', 'placeholder' => __('app.enter_new_name')]) }}
                             <span class="input-group-btn">
                                 {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_father_button']) }}
-                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-danger btn-sm']) }}
                             </span>
                         </div>
                         {{ Form::close() }}
                         @else
-                            {{ $user->fatherLink() }}
+                            {!! $user->fatherLink() !!}
                             <div class="pull-right">
                                 {{ link_to_route('users.show', __('user.set_father'), [$user->id, 'action' => 'set_father'], ['class' => 'btn btn-link btn-xs']) }}
                             </div>
                         @endif
                     @else
-                        {{ $user->fatherLink() }}
+                        {!! $user->fatherLink() !!}
                     @endcan
                 </td>
             </tr>
@@ -40,18 +39,18 @@
                             {{ Form::text('set_mother', null, ['class' => 'form-control input-sm', 'placeholder' => __('app.enter_new_name')]) }}
                             <span class="input-group-btn">
                                 {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_mother_button']) }}
-                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                                {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-danger btn-sm']) }}
                             </span>
                         </div>
                         {{ Form::close() }}
                         @else
-                            {{ $user->motherLink() }}
+                            {!! $user->motherLink() !!}
                             <div class="pull-right">
                                 {{ link_to_route('users.show', __('user.set_mother'), [$user->id, 'action' => 'set_mother'], ['class' => 'btn btn-link btn-xs']) }}
                             </div>
                         @endif
                     @else
-                        {{ $user->motherLink() }}
+                        {!! $user->motherLink() !!}
                     @endcan
                 </td>
             </tr>
@@ -75,7 +74,7 @@
                             {{ Form::open(['route' => ['family-actions.set-parent', $user->id]]) }}
                             {!! FormField::select('set_parent_id', $allMariageList, ['label' => false, 'value' => $user->parent_id, 'placeholder' => __('app.select_from_existing_couples')]) !!}
                             {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_parent_button']) }}
-                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-danger btn-sm']) }}
                             {{ Form::close() }}
                         @endif
                     @endcan
@@ -96,7 +95,7 @@
                     @if ($user->wifes->isEmpty() == false)
                         <ul class="list-unstyled">
                             @foreach($user->wifes as $wife)
-                            <li>{{ $wife->profileLink() }}</li>
+                            <li>{!! $wife->profileLink() !!}</li>
                             @endforeach
                         </ul>
                     @endif
@@ -116,7 +115,7 @@
                                 </div>
                             </div>
                             {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_wife_button']) }}
-                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), $user, ['class' => 'btn btn-danger btn-sm']) }}
                             {{ Form::close() }}
                         </div>
                         @endif
@@ -137,7 +136,7 @@
                     @if ($user->husbands->isEmpty() == false)
                         <ul class="list-unstyled">
                             @foreach($user->husbands as $husband)
-                            <li>{{ $husband->profileLink() }}</li>
+                            <li>{!! $husband->profileLink() !!}</li>
                             @endforeach
                         </ul>
                     @endif
@@ -157,7 +156,7 @@
                                 </div>
                             </div>
                             {{ Form::submit(__('app.update'), ['class' => 'btn btn-info btn-sm', 'id' => 'set_husband_button']) }}
-                            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+                            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-danger btn-sm']) }}
                             {{ Form::close() }}
                         </div>
                         @endif

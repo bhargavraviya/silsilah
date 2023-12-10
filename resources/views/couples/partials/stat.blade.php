@@ -1,5 +1,5 @@
-<div class="panel panel-default table-responsive hidden-xs">
-    <table class="table table-condensed table-bordered">
+<div class="table-responsive d-none d-sm-block">
+    <table class="table table-sm table-bordered">
         <tr>
             <td class="col-xs-2 text-center">{{ trans('couple.husband') }}</td>
             <td class="col-xs-2 text-center">{{ trans('couple.wife') }}</td>
@@ -15,7 +15,7 @@
     </table>
 </div>
 
-<ul class="list-group visible-xs">
+<ul class="list-group d-block d-sm-none mt-2">
     <li class="list-group-item">
         {{ trans('couple.husband') }}
         <span class="pull-right">{{ $couple->husband->profileLink() }}</span>

@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('user.edit') }}</h3></div>
-    <div class="panel-body">
+<div class="card">
+    <div class="card-header"><h3 class="card-title">{{ __('user.edit') }}</h3></div>
+    <div class="card-body">
         {!! FormField::text('name', ['label' => __('user.name')]) !!}
         {!! FormField::text('nickname', ['label' => __('user.nickname')]) !!}
         <div class="row">

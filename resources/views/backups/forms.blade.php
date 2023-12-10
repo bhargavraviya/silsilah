@@ -1,13 +1,13 @@
 @if (Request::get('action') == 'delete' && Request::has('file_name'))
     <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ trans('backup.delete') }}</h3>
+        <div class="card-header">
+            <h3 class="card-title">{{ trans('backup.delete') }}</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <p>{!! trans('backup.sure_to_delete_file', ['filename' => Request::get('file_name')]) !!}</p>
         </div>
-        <div class="panel-footer">
-            <a href="{{ route('backups.index') }}" class="btn btn-default">{{ trans('backup.cancel_delete') }}</a>
+        <div class="card-footer">
+            <a href="{{ route('backups.index') }}" class="btn btn-secondary">{{ trans('backup.cancel_delete') }}</a>
             <form action="{{ route('backups.destroy', Request::get('file_name')) }}" method="post" class="pull-right">
                 {{ method_field('delete') }}
                 {{ csrf_field() }}
@@ -19,12 +19,12 @@
 @endif
 @if (Request::get('action') == 'restore' && Request::has('file_name'))
     <div class="panel panel-warning">
-        <div class="panel-heading"><h3 class="panel-title">{{ trans('backup.restore') }}</h3></div>
-        <div class="panel-body">
+        <div class="card-header"><h3 class="card-title">{{ trans('backup.restore') }}</h3></div>
+        <div class="card-body">
             <p>{!! trans('backup.sure_to_restore', ['filename' => Request::get('file_name')]) !!}</p>
         </div>
-        <div class="panel-footer">
-            <a href="{{ route('backups.index') }}" class="btn btn-default">{{ trans('backup.cancel_restore') }}</a>
+        <div class="card-footer">
+            <a href="{{ route('backups.index') }}" class="btn btn-secondary">{{ trans('backup.cancel_restore') }}</a>
             <form action="{{ route('backups.restore', Request::get('file_name')) }}"
                 method="post"
                 class="pull-right"
@@ -36,8 +36,8 @@
         </div>
     </div>
 @endif
-<div class="panel panel-default">
-    <div class="panel-body">
+<div class="card">
+    <div class="card-body">
         <form action="{{ route('backups.store') }}" method="post">
             {{ csrf_field() }}
             <div class="form-group">

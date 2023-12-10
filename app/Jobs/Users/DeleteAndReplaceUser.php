@@ -2,23 +2,36 @@
 
 namespace App\Jobs\Users;
 
-use App\Couple;
-use App\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use App\Models\Couple;
+use App\Models\User;
 
-class DeleteAndReplaceUser
+class DeleteAndReplaceUser //implements ShouldQueue
 {
-    public $user;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public $user;
     public $replacementUserId;
 
+    /**
+     * Create a new job instance.
+     */
     public function __construct(User $user, string $replacementUserId)
     {
         $this->user = $user;
         $this->replacementUserId = $replacementUserId;
     }
 
-    public function handle()
+    /**
+     * Execute the job.
+     */
+    public function handle(): void
     {
         $user = $this->user;
         $replacementUserId = $this->replacementUserId;
@@ -62,20 +75,20 @@ class DeleteAndReplaceUser
 
         $couplesArray = [];
         foreach ($replacementUserCouples as $replacementUserCouple) {
-            $couplesArray[$replacementUserCouple->id] = $replacementUserCouple->husband_id.'_'.$replacementUserCouple->wife_id;
+            $couplesArray[$replacementUserCouple->id] = $replacementUserCouple->husband_id . '_' . $replacementUserCouple->wife_id;
         }
         foreach ($oldUserCouples as $oldUserCouple) {
-            $couplesArray[$oldUserCouple->id] = $oldUserCouple->husband_id.'_'.$oldUserCouple->wife_id;
+            $couplesArray[$oldUserCouple->id] = $oldUserCouple->husband_id . '_' . $oldUserCouple->wife_id;
         }
         $couplesArray = collect($couplesArray);
         $deletableCouples = [];
         if ($oldUser->gender_id == 1) {
             foreach ($oldUserCouples as $oldUserCouple) {
-                $deletableCouples[] = $couplesArray->search($replacementUserId.'_'.$oldUserCouple->wife_id);
+                $deletableCouples[] = $couplesArray->search($replacementUserId . '_' . $oldUserCouple->wife_id);
             }
         } else {
             foreach ($oldUserCouples as $oldUserCouple) {
-                $deletableCouples[] = $couplesArray->search($oldUserCouple->husband_id.'_'.$replacementUserId);
+                $deletableCouples[] = $couplesArray->search($oldUserCouple->husband_id . '_' . $replacementUserId);
             }
         }
 

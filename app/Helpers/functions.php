@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 
 /**
  * Convert file size to have unit string.

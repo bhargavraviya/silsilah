@@ -1,17 +1,16 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
+<div class="card mt-2">
+    <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title">{{ __('user.childs') }} ({{ $user->childs->count() }})</h3>
         @can ('edit', $user)
         <div class="pull-right" style="margin: -3px -6px">
             {{ link_to_route('users.show', __('user.add_child'), [$user->id, 'action' => 'add_child'], ['class' => 'btn btn-success btn-xs']) }}
         </div>
         @endcan
-        <h3 class="panel-title">{{ __('user.childs') }} ({{ $user->childs->count() }})</h3>
     </div>
-
     <ul class="list-group">
         @forelse($user->childs as $child)
             <li class="list-group-item">
-                {{ $child->profileLink() }} ({{ $child->gender }})
+                {!! $child->profileLink() !!} ({{ $child->gender }})
             </li>
         @empty
             <li class="list-group-item">{{ __('app.childs_were_not_recorded') }}</li>
@@ -38,7 +37,7 @@
             </div>
 
             {{ Form::submit(__('user.add_child'), ['class' => 'btn btn-success btn-sm']) }}
-            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-default btn-sm']) }}
+            {{ link_to_route('users.show', __('app.cancel'), [$user->id], ['class' => 'btn btn-danger btn-sm']) }}
             {{ Form::close() }}
         </li>
         @endif

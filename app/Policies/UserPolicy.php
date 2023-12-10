@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -10,10 +10,18 @@ class UserPolicy
     use HandlesAuthorization;
 
     /**
+     * Create a new policy instance.
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
      * Determine whether the user can edit the user data.
      *
-     * @param  \App\User  $user
-     * @param  \App\User  $editableUser
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $editableUser
      * @return mixed
      */
     public function edit(User $user, User $editableUser)

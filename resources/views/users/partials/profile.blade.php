@@ -1,13 +1,15 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('user.profile') }}</h3></div>
-    <div class="panel-body text-center">
-        {{ userPhoto($user, ['style' => 'width:100%;max-width:300px']) }}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">{{ trans('user.profile') }}</h3>
+    </div>
+    <div class="card-body text-center">
+        <img src="{{ $user->image_url }}" alt="" style="width:100%;max-width:300px">
     </div>
     <table class="table">
         <tbody>
             <tr>
                 <th class="col-sm-4">{{ trans('user.name') }}</th>
-                <td class="col-sm-8">{{ $user->profileLink() }}</td>
+                <td class="col-sm-8">{!! $user->profileLink() !!}</td>
             </tr>
             <tr>
                 <th>{{ trans('user.nickname') }}</th>

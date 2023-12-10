@@ -7,11 +7,17 @@ use Illuminate\Support\ServiceProvider;
 class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
-     *
-     * @return void
+     * Register any application services.
      */
-    public function boot()
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
     {
         require_once app_path() . '/Helpers/functions.php';
 
@@ -31,15 +37,5 @@ class AppServiceProvider extends ServiceProvider
 
             return $user && !\Hash::check($value, $user->password);
         });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }
